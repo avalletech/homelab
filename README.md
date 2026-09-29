@@ -135,8 +135,11 @@ A scheduled Proxmox backup job covers **all guests** (every VM and container).
 | Mode | Snapshot | Guests keep running during the backup, no downtime |
 | Compression | zstd | Fast compression with a good size ratio |
 | Notifications | Proxmox global notification settings | Failed backups are reported instead of failing silently |
+| Storage | `local` (the host's own disk) | Simple to start with; see the note below |
 
 The job shows in the Proxmox task log (see the dashboard screenshot above), completing successfully on Sunday, September 27 at 3:00 AM.
+
+**Known limitation:** the backups live on the same physical disk as the VMs they protect. They cover mistakes like a bad update or a deleted file, but a drive failure would take out the guests and their backups together. Moving backups to separate storage is on the roadmap, following the 3 2 1 rule: 3 copies, on 2 different media, with 1 off site.
 
 ## Network
 
@@ -193,6 +196,7 @@ Real problems I hit and how I resolved them.
 ## Roadmap
 
 * [ ] Switch AX10 to Access Point mode and remove double NAT
+* [ ] Move backups off the host disk (USB drive, NAS, or Proxmox Backup Server), then add an off site copy
 * [ ] Renew the internal service certificate before it expires (December 2028)
 * [ ] Trust the mkcert CA inside Uptime Kuma (`NODE_EXTRA_CA_CERTS`) and re-enable TLS verification on the monitors
 
