@@ -64,6 +64,10 @@ The OptiPlex runs headless. I manage it through the Proxmox web UI and reach pro
 | Portainer | Web UI for managing Docker containers | Docker | `portainer.avb` |
 | Nginx Proxy Manager | Reverse proxy and TLS termination | Docker | `npm.avb` |
 | Uptime Kuma | Service monitoring with Discord alerts | Docker | `kuma.avb` |
+| DC01 | Active Directory domain controller and DNS for `ad.avb` (Server Core) | VM (ID 110) | n/a |
+| WS01 | Domain joined Windows 11 Enterprise client | VM (ID 111) | n/a |
+
+The Active Directory lab (OUs, users and groups, lockout policy, help desk drills, AGDLP file shares, and GPO drive maps) is documented in [active-directory/](active-directory/README.md).
 
 ## Architecture
 
@@ -202,4 +206,4 @@ Real problems I hit and how I resolved them.
 
 ## Skills demonstrated
 
-Proxmox VE, virtualization, Linux administration, Docker, Portainer, DNS (Pi-hole), reverse proxying (Nginx Proxy Manager), internal PKI and TLS (mkcert), service monitoring and alerting (Uptime Kuma, Discord webhooks), SSH, RDP, home network troubleshooting.
+Proxmox VE, virtualization, Linux administration, Docker, Portainer, DNS (Pi-hole), reverse proxying (Nginx Proxy Manager), internal PKI and TLS (mkcert), service monitoring and alerting (Uptime Kuma, Discord webhooks), SSH, RDP, home network troubleshooting, Active Directory, Group Policy, PowerShell, NTFS and share permissions.
