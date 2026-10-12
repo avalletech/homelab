@@ -180,6 +180,21 @@ Verified by signing in as one user per department: each received only their own 
 
 ![kevin.brooks (HR) receiving only the R: drive](images/hr_drive_mapped.png)
 
+## GPO: workstation login banner
+
+GPO `Workstation Login Banner`, linked to `AVB > Computers > Workstations`. Set under Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options:
+
+| Setting | Value |
+|---|---|
+| Interactive logon: Message title for users attempting to log on | Authorized Use Only |
+| Interactive logon: Message text for users attempting to log on | This system is for authorized AVB users only. Activity may be monitored. |
+
+Applied with `gpupdate /force` on WS01 and confirmed with `gpresult /r /scope computer`. The banner now appears before every sign in:
+
+![Login banner on WS01](images/login_banner.png)
+
+This is a **computer** setting, so it applies based on the OU the computer object is in. Linking it to the Users OU would do nothing, because no computer objects live there (making that work requires loopback processing). It is also the opposite of the lockout policy: account policies are processed by the DC, while this one is applied by the workstation itself.
+
 ## Troubleshooting notes
 
 Problems I hit and what they taught me:
@@ -192,7 +207,6 @@ Problems I hit and what they taught me:
 
 ## Next steps
 
-* Workstation login banner (Computer Configuration, linked to Workstations)
 * USB storage restrictions for one department
 * Remove Control Panel access for non IT users
 * Windows LAPS for local admin passwords
